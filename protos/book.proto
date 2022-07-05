@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "/book";
+
+package book;
+
+import "google/protobuf/empty.proto";
+
+service BookService {
+  rpc SayHello(Message) returns (Message) {}
+  rpc CreateItem (Book) returns (ID) {}
+  rpc ReadItem (ID) returns (Book) {}
+  rpc AllItem (google.protobuf.Empty) returns (AllBook) {}
+}
+
+message Message {
+  string name = 1;
+}
+
+message Book {
+  string name = 1;
+  string id = 2;
+  int32 category = 3;
+}
+
+message AllBook {
+  repeated Book books=1;
+}
+
+message ID {
+  string id = 1;
+}
